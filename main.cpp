@@ -189,6 +189,28 @@ bool IsIdentityMarix(int Matrix1[3][3], short Rows, short Cols)
 }
 //
 
+// proplem-11: Check if scalar matrix
+bool IsScalar(int Matrix[3][3], short Rows, short Cols)
+{
+    int FirstCeilValue = Matrix[0][0];
+    for (short i = 0; i < Rows; i++)
+    {
+        for (short j = 0; j < Cols; j++)
+        {
+            if (i == j && Matrix[i][j] != FirstCeilValue)
+            {
+                return false;
+            }
+            else if (i != j && Matrix[i][j] != 0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
