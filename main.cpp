@@ -211,6 +211,23 @@ bool IsScalar(int Matrix[3][3], short Rows, short Cols)
 }
 //
 
+
+// proplem-12: Count number in matrix
+int CountNumberInMatrix(int Matrix[3][3], short Rows, short Cols, int Number)
+{
+    int Counter = 0;
+    for (short i = 0; i < Rows; i++)
+    {
+        for (short j = 0; j < Cols; j++)
+        {
+            if (Matrix[i][j] == Number)
+                Counter++;
+        }
+    }
+    return Counter;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
