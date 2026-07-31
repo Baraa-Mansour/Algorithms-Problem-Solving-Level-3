@@ -253,17 +253,25 @@ bool IsPalindromeMatrix(int Matrix[100][100], short Rows, short Cols)
 }
 //
 
+// proplem-15: Fibonacci
+void PrintFibonacciUsingLoop(short Number)
+{
+    int FibNumber = 1;
+    int Prev1 = 1, Prev2 = 0;
+    cout << "1" << " ";
+    for (int i = 2; i <= Number; i++)
+    {
+        FibNumber = Prev1 + Prev2;
+        cout << FibNumber << " ";
+
+        Prev2 = Prev1;
+        Prev1 = FibNumber;
+    }
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
-    int Matrix1[100][100] = { {1,2,1},{5,5,5},{7,2,7} };
-    cout << "\nMatrix1:\n";
-    PrintMatrix(Matrix1, 3, 3);
-    if (IsPalindromeMatrix(Matrix1, 3, 3))
-    {
-        cout << "\nYes: Matrix is Palindrome\n";
-    }
-    else
-        cout << "\nNo: Matrix is NOT Palindrome\n";
-    system("pause>0");
+    PrintFibonacciUsingLoop(10);
 }
