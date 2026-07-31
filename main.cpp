@@ -119,18 +119,36 @@ void Mutltiply2Matrix(int Arr1[100][100], int Arr2[100][100], int Result[100][10
 }
 //
 
+// proplem-7: Print middle row and column in matrix
+void GetMiddleRow(int Arr[100][100], int MidArr[100], int Rows, int Cols)
+{
+    int MiddleRow = Rows / 2;
+    for (int i = 0; i < Cols; i++)
+        MidArr[i] = Arr[MiddleRow][i];
+}
+void GetMiddleCol(int Arr[100][100], int MidArr[100], int Rows, int Cols)
+{
+    int MiddleCol = Cols / 2;
+    for (int i = 0; i < Rows; i++)
+        MidArr[i] = Arr[i][MiddleCol];
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
     int Arr[100][100];
-    int Transpose[100][100];
-    int Result[100][100];
+    int MidRow[100];
+    int MidCol[100];
 
     Fill2dArrayWithOrderNumber(Arr, 3, 3);
     Print2dArray(Arr, 3, 3);
-    TransposeMatrix(Arr, Transpose, 3, 3);
-    Print2dArray(Transpose, 3, 3);
-    Mutltiply2Matrix(Arr, Transpose, Result, 3, 3);
-    Print2dArray(Result, 3, 3);
+
+    GetMiddleRow(Arr, MidRow, 3, 3);
+    GetMiddleCol(Arr, MidCol, 3, 3);
+    
+    PrintArray(MidRow, 3);
+    cout << "_______________________" << endl;
+    PrintArray(MidCol, 3);
     return 0;
 }
