@@ -6,7 +6,7 @@
 using namespace std;
 
 // HELPER
-void Print2dArray(int Arr[100][100], int Rows, int Columns)
+void PrintMatrix(int Arr[100][100], int Rows, int Columns)
 {
     cout << endl;
     for (int i = 0; i < Rows; i++)
@@ -147,14 +147,14 @@ int MatrixSum(int Arr[100][100], int Rows, int Cols)
     }
     return Sum;
 }
-bool IsEqual(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
+bool IsEqualMatrix(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
 {
     return (MatrixSum(Arr1, Rows, Cols) == MatrixSum(Arr2, Rows, Cols));
 }
 //
 
 // proplem-9: Check if matrices are typical
-bool IsTypical(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
+bool IsTypicalMatrix(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
 {
     for (int i = 0, k = 1; i < Rows; i++)
     {
@@ -190,7 +190,7 @@ bool IsIdentityMarix(int Matrix1[100][100], short Rows, short Cols)
 //
 
 // proplem-11: Check if scalar matrix
-bool IsScalar(int Matrix[100][100], short Rows, short Cols)
+bool IsScalarMatrix(int Matrix[100][100], short Rows, short Cols)
 {
     int FirstCeilValue = Matrix[0][0];
     for (short i = 0; i < Rows; i++)
@@ -228,8 +228,8 @@ int CountNumberInMatrix(int Matrix[100][100], short Rows, short Cols, int Number
 }
 //
 
-// proplem-13 Check If Sparse Matrix
-bool IsSparce(int Matrix[100][100], short Rows, short Cols)
+// proplem-13: Check If Sparse Matrix
+bool IsSparceMatrix(int Matrix[100][100], short Rows, short Cols)
 {
     int CountOfZero = CountNumberInMatrix(Matrix, Rows, Cols, 0);
     int MatrixSize = Rows * Cols;
@@ -238,15 +238,32 @@ bool IsSparce(int Matrix[100][100], short Rows, short Cols)
 }
 //
 
+// proplem-14: Check If Palindrome Matrix
+bool IsPalindromeMatrix(int Matrix[100][100], short Rows, short Cols)
+{
+    for (short i = 0; i < Rows; i++)
+    {
+        for (short j = 0; j < Cols; j++)
+        {
+            if (Matrix[i][j] != Matrix[i][Cols - 1 - j])
+                return false;
+        }
+    }
+    return true;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
-    int Matrix1[100][100] = { {0,0,0},{0,0,1},{9,9,9} };
+    int Matrix1[100][100] = { {1,2,1},{5,5,5},{7,2,7} };
     cout << "\nMatrix1:\n";
-    Print2dArray(Matrix1, 3, 3);
-    if (IsSparce(Matrix1, 3, 3))
-        cout << "\nYes: It is Sparse\n";
+    PrintMatrix(Matrix1, 3, 3);
+    if (IsPalindromeMatrix(Matrix1, 3, 3))
+    {
+        cout << "\nYes: Matrix is Palindrome\n";
+    }
     else
-        cout << "\nNo: It's NOT Sparse\n";
+        cout << "\nNo: Matrix is NOT Palindrome\n";
     system("pause>0");
 }
