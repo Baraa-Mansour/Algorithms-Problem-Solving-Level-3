@@ -169,7 +169,7 @@ bool IsTypical(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
 //
 
 // proplem-10: Check if matrix is Identity
-bool IsIdentityMarix(int Matrix1[3][3], short Rows, short Cols)
+bool IsIdentityMarix(int Matrix1[100][100], short Rows, short Cols)
 {
     for (short i = 0; i < Rows; i++)
     {
@@ -190,7 +190,7 @@ bool IsIdentityMarix(int Matrix1[3][3], short Rows, short Cols)
 //
 
 // proplem-11: Check if scalar matrix
-bool IsScalar(int Matrix[3][3], short Rows, short Cols)
+bool IsScalar(int Matrix[100][100], short Rows, short Cols)
 {
     int FirstCeilValue = Matrix[0][0];
     for (short i = 0; i < Rows; i++)
@@ -213,7 +213,7 @@ bool IsScalar(int Matrix[3][3], short Rows, short Cols)
 
 
 // proplem-12: Count number in matrix
-int CountNumberInMatrix(int Matrix[3][3], short Rows, short Cols, int Number)
+int CountNumberInMatrix(int Matrix[100][100], short Rows, short Cols, int Number)
 {
     int Counter = 0;
     for (short i = 0; i < Rows; i++)
@@ -228,20 +228,25 @@ int CountNumberInMatrix(int Matrix[3][3], short Rows, short Cols, int Number)
 }
 //
 
+// proplem-13 Check If Sparse Matrix
+bool IsSparce(int Matrix[100][100], short Rows, short Cols)
+{
+    int CountOfZero = CountNumberInMatrix(Matrix, Rows, Cols, 0);
+    int MatrixSize = Rows * Cols;
+
+    return CountOfZero > (MatrixSize / 2);
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
-    int Arr[100][100];
-    int Arr2[100][100];
-    int MidRow[100];
-    int MidCol[100];
-
-    Fill2dArrayWithOrderNumber(Arr, 3, 3);
-    Fill2dArrayWithOrderNumber(Arr2, 3, 3);
-
-    Print2dArray(Arr, 3, 3);
-    Print2dArray(Arr2, 3, 3);
-
-    cout << IsTypical(Arr, Arr2, 3, 3);
-    return 0;
+    int Matrix1[100][100] = { {0,0,0},{0,0,1},{9,9,9} };
+    cout << "\nMatrix1:\n";
+    Print2dArray(Matrix1, 3, 3);
+    if (IsSparce(Matrix1, 3, 3))
+        cout << "\nYes: It is Sparse\n";
+    else
+        cout << "\nNo: It's NOT Sparse\n";
+    system("pause>0");
 }
