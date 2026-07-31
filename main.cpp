@@ -153,6 +153,22 @@ bool IsEqual(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
 }
 //
 
+// proplem-9: Check if matrices are typical
+bool IsTypical(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
+{
+    for (int i = 0, k = 1; i < Rows; i++)
+    {
+        for (int j = 0; j < Cols; j++)
+        {
+            if (Arr1[i][j] != Arr2[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+//
+
+
 int main()
 {
     srand((unsigned)time(NULL));
@@ -162,10 +178,11 @@ int main()
     int MidCol[100];
 
     Fill2dArrayWithOrderNumber(Arr, 3, 3);
-    TransposeMatrix(Arr, Arr2, 3, 3);
+    Fill2dArrayWithOrderNumber(Arr2, 3, 3);
+
     Print2dArray(Arr, 3, 3);
     Print2dArray(Arr2, 3, 3);
 
-    cout << IsEqual(Arr, Arr2, 3, 3);
+    cout << IsTypical(Arr, Arr2, 3, 3);
     return 0;
 }
