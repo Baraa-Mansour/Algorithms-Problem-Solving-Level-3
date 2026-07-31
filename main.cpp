@@ -134,21 +134,38 @@ void GetMiddleCol(int Arr[100][100], int MidArr[100], int Rows, int Cols)
 }
 //
 
+// proplem-8: Check if two matrices are equal
+int MatrixSum(int Arr[100][100], int Rows, int Cols)
+{
+    int Sum = 0;
+    for (int i = 0, k = 1; i < Rows; i++)
+    {
+        for (int j = 0; j < Cols; j++)
+        {
+            Sum += Arr[i][j];
+        }
+    }
+    return Sum;
+}
+bool IsEqual(int Arr1[100][100], int Arr2[100][100], int Rows, int Cols)
+{
+    return (MatrixSum(Arr1, Rows, Cols) == MatrixSum(Arr2, Rows, Cols));
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
     int Arr[100][100];
+    int Arr2[100][100];
     int MidRow[100];
     int MidCol[100];
 
     Fill2dArrayWithOrderNumber(Arr, 3, 3);
+    TransposeMatrix(Arr, Arr2, 3, 3);
     Print2dArray(Arr, 3, 3);
+    Print2dArray(Arr2, 3, 3);
 
-    GetMiddleRow(Arr, MidRow, 3, 3);
-    GetMiddleCol(Arr, MidCol, 3, 3);
-    
-    PrintArray(MidRow, 3);
-    cout << "_______________________" << endl;
-    PrintArray(MidCol, 3);
+    cout << IsEqual(Arr, Arr2, 3, 3);
     return 0;
 }
