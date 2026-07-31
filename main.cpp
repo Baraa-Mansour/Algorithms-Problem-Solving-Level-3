@@ -13,7 +13,7 @@ void Print2dArray(int Arr[100][100], int Rows, int Columns)
     {
         for (int j = 0; j < Columns; j++)
         {
-            cout << setw(3) << Arr[i][j] << "   ";
+            printf("%0*d   ", 2, Arr[i][j]);
         }
         cout << endl;
     }
@@ -101,7 +101,20 @@ void TransposeMatrix(int Arr[100][100], int TransposeArr[100][100], int Rows, in
         {
             TransposeArr[j][i] = Arr[i][j];
         }
+    }
+}
+//
 
+// proplem-6: Multiply 2 arrays
+void Mutltiply2Matrix(int Arr1[100][100], int Arr2[100][100], int Result[100][100],
+    int Rows, int Cols)
+{
+    for (int i = 0, k = 1; i < Rows; i++)
+    {
+        for (int j = 0; j < Cols; j++)
+        {
+            Result[i][j] = Arr1[i][j] * Arr2[i][j];
+        }
     }
 }
 //
@@ -111,10 +124,13 @@ int main()
     srand((unsigned)time(NULL));
     int Arr[100][100];
     int Transpose[100][100];
+    int Result[100][100];
 
     Fill2dArrayWithOrderNumber(Arr, 3, 3);
+    Print2dArray(Arr, 3, 3);
     TransposeMatrix(Arr, Transpose, 3, 3);
-
     Print2dArray(Transpose, 3, 3);
+    Mutltiply2Matrix(Arr, Transpose, Result, 3, 3);
+    Print2dArray(Result, 3, 3);
     return 0;
 }
