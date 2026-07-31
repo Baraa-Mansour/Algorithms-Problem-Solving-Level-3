@@ -92,14 +92,29 @@ void Fill2dArrayWithOrderNumber(int Arr[100][100], int Rows, int Cols)
 }
 //
 
+// proplem-5: transpose matrix
+void TransposeMatrix(int Arr[100][100], int TransposeArr[100][100], int Rows, int Cols)
+{
+    for (int i = 0, k = 1; i < Rows; i++)
+    {
+        for (int j = 0; j < Cols; j++)
+        {
+            TransposeArr[j][i] = Arr[i][j];
+        }
+
+    }
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
     int Arr[100][100];
-    int arr[100];
+    int Transpose[100][100];
 
     Fill2dArrayWithOrderNumber(Arr, 3, 3);
+    TransposeMatrix(Arr, Transpose, 3, 3);
 
-    Print2dArray(Arr, 3, 3);
+    Print2dArray(Transpose, 3, 3);
     return 0;
 }
