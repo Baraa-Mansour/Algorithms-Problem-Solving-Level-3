@@ -78,19 +78,28 @@ void PrintArray(int arr[100], int arrLength)
 }
 //
 
+// proplem-4: Fill 2d Array with oreder number
+void Fill2dArrayWithOrderNumber(int Arr[100][100], int Rows, int Cols)
+{
+    for (int i = 0, k = 1; i < Rows; i++)
+    {
+        for (int j = 0; j < Cols; j++)
+        {
+            Arr[i][j] = k++;
+        }
+        
+    }
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
     int Arr[100][100];
     int arr[100];
 
-    Fill2dArrayWithRandomNumbers(Arr, 3, 3);
+    Fill2dArrayWithOrderNumber(Arr, 3, 3);
 
     Print2dArray(Arr, 3, 3);
-
-    GetSumColumnsElementsArray(Arr, arr, 3, 3);
-
-    PrintArray(arr, 3);
-
     return 0;
 }
