@@ -488,10 +488,45 @@ void PrintVector(vector<string> vStrings)
 }
 //
 
+// proplem-26: Trim left/right/all
+string TrimLeft(string Line)
+{
+    for (int i = 0; i < Line.length(); i++)
+    {
+        if (Line[i] != ' ')
+            return Line.substr(i, Line.length() - i);
+    }
+    return Line;
+}
+string TrimRight(string Line)
+{
+    for (int i = Line.length() - 1; i >= 0; i--)
+    {
+        if (Line[i] != ' ')
+            return Line.substr(0, i + 1);
+    }
+    return Line;
+}
+string Trim(string Line)
+{
+    return TrimRight(TrimLeft(Line));
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string Line = "  E Eng Baraa Mnasour ";
-    PrintVector(SplitString(Line));
+    string Line = "    E Eng Baraa Mnasour    ";
+    string left = TrimLeft(Line);
+    string right = TrimRight(Line);
+    string all = Trim(Line);
+    cout << Line << endl;
+    cout << Line.length() << endl;
+    cout << left << endl;
+    cout << left.length() << endl;
+    cout << right << endl;
+    cout << right.length() << endl;
+    cout << all << endl;
+    cout << all.length() << endl;
 }
