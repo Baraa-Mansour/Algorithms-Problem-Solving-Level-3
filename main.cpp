@@ -2,6 +2,7 @@
 #include <ctime>
 #include<iomanip>
 #include "Random.h"
+#include <string>
 
 using namespace std;
 
@@ -412,10 +413,54 @@ bool IsVowel(char Char)
 }
 //
 
+// proplem-24: Print each word in string
+bool IsEmpty(string& Line)
+{
+    return Line == "" || Line == " ";
+}
+//void PrintStringWords(string& Line)
+//{
+//    if (IsEmpty(Line))
+//        return;
+//
+//    string Word = "";
+//    for (int i = 0; i < Line.length(); i++)
+//    {
+//        if (Line[i] != ' ')
+//            Word += Line[i];
+//        else if(!IsEmpty(Word))
+//        {
+//            cout << Word << endl;
+//            Word = "";
+//        }
+//    }
+//}
+void PrintStringWords(string& Line)
+{
+    string Word = "";
+    short Pos = 0;
+    const string Dilim = " ";
+
+    while ((Pos = Line.find(Dilim)) != std::string::npos)
+    {
+        Word = Line.substr(0, Pos);
+
+        if(!IsEmpty(Word))
+            cout << Word << endl;
+
+        Line.erase(0, Pos + Dilim.length());
+    }
+
+    // Print last word cause find method wont find it if Line dont end with white space
+    if (!IsEmpty(Line)) 
+        cout << Line << endl;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    char c = 'E';
-    cout << IsVowel(c) << endl;
+    string Line = "  E Eng Baraa Mnasour ";
+    PrintStringWords(Line);
 }
