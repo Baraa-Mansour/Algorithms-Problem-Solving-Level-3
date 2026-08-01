@@ -359,9 +359,19 @@ char InvertCharCase(char C)
 }
 //
 
+// proplem-21: Invert all string char case
+string InvertStringCase(string Line)
+{
+    for (char& c : Line)
+        c = InvertCharCase(c);
+
+    return Line;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    cout << InvertCharCase('b');
+    cout << InvertStringCase("  E  Eng   Baraa   Mansour   ");
 }
