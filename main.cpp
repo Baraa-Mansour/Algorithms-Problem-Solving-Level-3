@@ -555,11 +555,25 @@ string ReverseWords(string Line, string Delimiter = " ")
 }
 //
 
+// proplem-30: Replace word in string
+string ReplaceWord(string Line, string OldWord, string NewWord)
+{
+    short Pos = 0;
+
+    while ((Pos = Line.find(OldWord)) != string::npos)
+    {
+        Line = Line.replace(Pos, OldWord.length(), NewWord);
+    }
+
+    return Line;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string str = "baraa mansour bmb 109";
+    string str = "    baraa mansour baraa  baraa bmb baraa 109    ";
 
-    cout << ReverseWords(str, " ");
+    cout << ReplaceWord(str, "baraa", "bilal");
 }
