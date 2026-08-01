@@ -299,8 +299,34 @@ void PrintFirstLetterOfEachWord(string Line)
         IsFirstLetter = Line[i] == ' ' ? true : false;
     }
 }
+//
+
+// proplem-18: Uppercase From each first letter
+string UpperEachFirstLetter(string Line)
+{
+    string UpperLine = "";
+    bool IsFirstLetter = true;
+
+    for (int i = 0; i < Line.size(); i++)
+    {
+        if (Line[i] != ' ' && IsFirstLetter)
+        {
+            UpperLine += toupper(Line[i]);
+        }
+        else
+        {
+            UpperLine += Line[i];
+        }
+
+        IsFirstLetter = Line[i] == ' ' ? true : false;
+    }
+
+    return UpperLine;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
-    PrintFirstLetterOfEachWord(" Eng Baraa Mansour ");
+    cout << UpperEachFirstLetter("     e  eng  baraa  mansour ");
 }
