@@ -3,6 +3,7 @@
 #include<iomanip>
 #include "Random.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -457,10 +458,40 @@ void PrintStringWords(string& Line)
 }
 //
 
+// proplem-25: Return vector contain string word based on delimiter
+vector<string> SplitString(string Line, string Delimiter = " ")
+{
+    vector<string> vWords;
+    string Word = "";
+    short Pos = 0;
+
+    while ((Pos = Line.find(Delimiter)) != std::string::npos)
+    {
+        Word = Line.substr(0, Pos);
+
+        if (!IsEmpty(Word))
+            vWords.push_back(Word);
+
+        Line.erase(0, Pos + Delimiter.length());
+    }
+
+    // Print last word cause find method wont find it if Line dont end with white space
+    if (!IsEmpty(Line))
+        vWords.push_back(Word);
+
+    return vWords;
+}
+void PrintVector(vector<string> vStrings)
+{
+    for (const string& str : vStrings)
+        cout << str << endl;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
     string Line = "  E Eng Baraa Mnasour ";
-    PrintStringWords(Line);
+    PrintVector(SplitString(Line));
 }
