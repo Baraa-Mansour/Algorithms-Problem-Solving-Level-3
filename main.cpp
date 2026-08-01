@@ -525,12 +525,29 @@ string Join(vector<string> vStrings, string Delimiter = " ")
 }
 //
 
+// proplem-28(extend 27): Join string using array (overloading)
+string Join(string Strings[], short ArrLength, string Delimiter = " ")
+{
+    string Line = "";
+
+    for (int i = 0 ; i < ArrLength ; i++)
+        Line += Strings[i] + Delimiter;
+        
+    return Line.substr(0, Line.length() - Delimiter.length());
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
     vector<string> vStrings = {"ali", "ali", "yaali"};
+    string strings[100] = { "ali", "ali", "yaali" };
+    string ArrJoin = Join(strings, strings->length());
+    string VectorJoin = Join(vStrings);
 
-    cout << Join(vStrings) << endl;
-    cout << Join(vStrings).length() << endl;
+    cout << ArrJoin << endl;
+    cout << ArrJoin.length() << endl;
+    cout << VectorJoin << endl;
+    cout << VectorJoin.length() << endl;
 }
