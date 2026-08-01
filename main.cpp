@@ -325,8 +325,35 @@ string UpperEachFirstLetter(string Line)
 }
 //
 
+// proplem-19: Upper/Lower String
+string ToUpperString(string Line)
+{
+    string UpperLine = "";
+
+    for (const char& Letter : Line)
+        UpperLine += toupper(Letter);
+
+    return UpperLine;
+}
+string ToLowerString(string Line)
+{
+    string LowerLine = "";
+
+    for (const char& Letter : Line)
+        LowerLine += tolower(Letter);
+
+    return LowerLine;
+}
+void PrintUpperLowerString(string Line)
+{
+    cout << Line << endl;
+    printf("Uppercase: %s\n", ToUpperString(Line).c_str());
+    printf("Lowercase: %s\n", ToLowerString(Line).c_str());
+}
+//
 int main()
 {
     srand((unsigned)time(NULL));
-    cout << UpperEachFirstLetter("     e  eng  baraa  mansour ");
+
+    PrintUpperLowerString("     E  Eng  Baraa  Mansour ");
 }
