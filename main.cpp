@@ -5,6 +5,14 @@
 
 using namespace std;
 
+struct stStringCountInfo
+{
+    short Length = 0;
+    short CapitalCount = 0;
+    short SmallCount = 0;
+    short WhiteSpace = 0;
+};
+
 // HELPER
 void PrintMatrix(int Arr[100][100], int Rows, int Columns)
 {
@@ -369,9 +377,34 @@ string InvertStringCase(string Line)
 }
 //
 
+// proplem-22: Print Count of Capital/Small letters and length of string
+stStringCountInfo CountString(const string& Line)
+{
+    stStringCountInfo StringInfo;
+
+    StringInfo.Length = Line.size();
+
+    for (const char& c : Line)
+    {
+        c == ' ' ? StringInfo.WhiteSpace++
+            : (isupper(c) ? StringInfo.CapitalCount++ 
+                : StringInfo.SmallCount++);
+    }
+
+    return StringInfo;
+}
+void PrintStringCountInfo(stStringCountInfo StringInfo)
+{
+    printf("Length: %d \n", StringInfo.Length);
+    printf("Capital : %d \n", StringInfo.CapitalCount);
+    printf("Small: %d \n", StringInfo.SmallCount);
+    printf("White space: %d \n", StringInfo.WhiteSpace);
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    cout << InvertStringCase("  E  Eng   Baraa   Mansour   ");
+    PrintStringCountInfo(CountString("  E  Eng   Baraa   Mansour   "));
 }
