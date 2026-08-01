@@ -458,7 +458,7 @@ void PrintStringWords(string& Line)
 }
 //
 
-// proplem-25: Return vector contain string word based on delimiter
+// proplem-25: Split string -> Return vector contain string word based on delimiter
 vector<string> SplitString(string Line, string Delimiter = " ")
 {
     vector<string> vWords;
@@ -513,20 +513,24 @@ string Trim(string Line)
 }
 //
 
+// proplem-27: Join String
+string Join(vector<string> vStrings, string Delimiter = " ")
+{
+    string Line = "";
+
+    for (const string& Word : vStrings)
+        Line += Word + Delimiter;
+    
+    return Line.substr(0, Line.length() - Delimiter.length());
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string Line = "    E Eng Baraa Mnasour    ";
-    string left = TrimLeft(Line);
-    string right = TrimRight(Line);
-    string all = Trim(Line);
-    cout << Line << endl;
-    cout << Line.length() << endl;
-    cout << left << endl;
-    cout << left.length() << endl;
-    cout << right << endl;
-    cout << right.length() << endl;
-    cout << all << endl;
-    cout << all.length() << endl;
+    vector<string> vStrings = {"ali", "ali", "yaali"};
+
+    cout << Join(vStrings) << endl;
+    cout << Join(vStrings).length() << endl;
 }
