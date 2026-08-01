@@ -477,7 +477,7 @@ vector<string> SplitString(string Line, string Delimiter = " ")
 
     // Print last word cause find method wont find it if Line dont end with white space
     if (!IsEmpty(Line))
-        vWords.push_back(Word);
+        vWords.push_back(Line);
 
     return vWords;
 }
@@ -537,17 +537,29 @@ string Join(string Strings[], short ArrLength, string Delimiter = " ")
 }
 //
 
+// proplem-29: Reverse sting word
+string ReverseWords(string Line, string Delimiter = " ")
+{
+    string ReversedLine = "";
+    
+    vector<string> vWords = SplitString(Line, Delimiter);
+    vector<string>::iterator strIter = vWords.end();
+
+    while (strIter != vWords.begin())
+    {
+        strIter--;
+        ReversedLine += *strIter + Delimiter;
+    }
+
+    return ReversedLine.substr(0, ReversedLine.length() - Delimiter.length());
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    vector<string> vStrings = {"ali", "ali", "yaali"};
-    string strings[100] = { "ali", "ali", "yaali" };
-    string ArrJoin = Join(strings, strings->length());
-    string VectorJoin = Join(vStrings);
+    string str = "baraa mansour bmb 109";
 
-    cout << ArrJoin << endl;
-    cout << ArrJoin.length() << endl;
-    cout << VectorJoin << endl;
-    cout << VectorJoin.length() << endl;
+    cout << ReverseWords(str, " ");
 }
