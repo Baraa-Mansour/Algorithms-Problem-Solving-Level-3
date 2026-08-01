@@ -253,7 +253,7 @@ bool IsPalindromeMatrix(int Matrix[100][100], short Rows, short Cols)
 }
 //
 
-// proplem-15: Fibonacci
+// proplem-15: Fibonacci using loop
 void PrintFibonacciUsingLoop(short Number)
 {
     int FibNumber = 1;
@@ -270,8 +270,37 @@ void PrintFibonacciUsingLoop(short Number)
 }
 //
 
+// proplem-16: Fibonacci using recurssion
+void PrintFibonacciUsingRecurssion(short Number, short Prev1, short Prev2)
+{
+    if (Number > 0)
+    {
+        int FebNumber = Prev1 + Prev2;
+        Prev2 = Prev1;
+        Prev1 = FebNumber;
+        cout << FebNumber << " ";
+        PrintFibonacciUsingRecurssion(Number - 1, Prev1, Prev2);
+    }
+}
+//
+
+// proplem-17: Print first letter from each word
+void PrintFirstLetterOfEachWord(string Line)
+{
+    bool IsFirstLetter = true;
+    for (int i = 0; i < Line.size(); i++)
+    {
+        if (Line[i] != ' ' && IsFirstLetter)
+        {
+            cout << Line[i] << endl;
+            IsFirstLetter = false;
+        }
+        
+        IsFirstLetter = Line[i] == ' ' ? true : false;
+    }
+}
 int main()
 {
     srand((unsigned)time(NULL));
-    PrintFibonacciUsingLoop(10);
+    PrintFirstLetterOfEachWord(" Eng Baraa Mansour ");
 }
