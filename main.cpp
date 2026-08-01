@@ -569,11 +569,36 @@ string ReplaceWord(string Line, string OldWord, string NewWord)
 }
 //
 
+// proplem-31: Replace word in string with custom with match case
+string ReplaceWord(string Line, string OldWord, string NewWord, bool MatchCase)
+{
+    vector<string> vWords = SplitString(Line);
+
+    for (string& Word : vWords)
+    {
+        if (MatchCase)
+        {
+            if (Word == OldWord)
+                Word = NewWord;
+        }
+        else
+        {
+            if (ToLowerString(Word) == ToLowerString(OldWord))
+            {
+                Word = NewWord;
+            }
+        }
+    }
+
+    return Join(vWords);
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string str = "    baraa mansour baraa  baraa bmb baraa 109    ";
+    string str = "    baraa mansour baraa  Baraa bmb baraa 109    ";
 
-    cout << ReplaceWord(str, "baraa", "bilal");
+    cout << ReplaceWord(str, "baraa", "bilal", true);
 }
