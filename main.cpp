@@ -351,9 +351,17 @@ void PrintUpperLowerString(string Line)
     printf("Lowercase: %s\n", ToLowerString(Line).c_str());
 }
 //
+
+// proplem-20: Invert char case
+char InvertCharCase(char C)
+{
+    return isupper(C) ? tolower(C) : toupper(C);
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    PrintUpperLowerString("     E  Eng  Baraa  Mansour ");
+    cout << InvertCharCase('b');
 }
