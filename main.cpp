@@ -594,11 +594,29 @@ string ReplaceWord(string Line, string OldWord, string NewWord, bool MatchCase)
 }
 //
 
+// proplem-32: Delete Punctuations From String
+string DeletePunctuationsFromString(string Line)
+{
+    string NewLine = "";
+
+    for (const char& Char : Line)
+        if (!ispunct(Char))
+            NewLine += Char;
+
+    return NewLine;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string str = "    baraa mansour baraa  Baraa bmb baraa 109    ";
+    string str = "....baraa! mansour_ bara@  Bara@ bmb bara@ 109  &  ";
 
-    cout << ReplaceWord(str, "baraa", "bilal", true);
+    cout << str << endl;
+    cout << str.length() << endl;
+
+    string deletedPunc = DeletePunctuationsFromString(str);
+    cout << deletedPunc << endl;
+    cout << deletedPunc.length() << endl;
 }
