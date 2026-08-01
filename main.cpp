@@ -4,16 +4,9 @@
 #include "Random.h"
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
-
-struct stStringCountInfo
-{
-    short Length = 0;
-    short CapitalCount = 0;
-    short SmallCount = 0;
-    short WhiteSpace = 0;
-};
 
 // HELPER
 void PrintMatrix(int Arr[100][100], int Rows, int Columns)
@@ -380,6 +373,13 @@ string InvertStringCase(string Line)
 //
 
 // proplem-22: Print Count of Capital/Small letters and length of string
+struct stStringCountInfo
+{
+    short Length = 0;
+    short CapitalCount = 0;
+    short SmallCount = 0;
+    short WhiteSpace = 0;
+};
 stStringCountInfo CountString(const string& Line)
 {
     stStringCountInfo StringInfo;
@@ -607,16 +607,76 @@ string DeletePunctuationsFromString(string Line)
 }
 //
 
+// proplem-33: Read client data and save if as record in file
+struct stClient
+{
+    string AccountNumber = "";
+    string PinCode = "";
+    string Name = "";
+    string Phone = "";
+    double AccountBalance = 0.0;
+};
+stClient ReadClientInfo()
+{
+    stClient Client;
+
+    cout << "Account number: ";
+    getline(cin, Client.AccountNumber);
+
+    cout << "Pin Code: ";
+    getline(cin, Client.PinCode);
+
+    cout << "Name: ";
+    getline(cin, Client.Name);
+
+    cout << "Phone: ";
+    getline(cin, Client.Phone);
+
+    cout << "Account Balance: ";
+    cin >> Client.AccountBalance;
+
+    return Client;
+}
+string ClientToString(stClient Client)
+{
+    string Record = "";
+    string Delimiter = "#//#";
+
+    Record += Client.AccountNumber + Delimiter;
+    Record += Client.PinCode + Delimiter;
+    Record += Client.Name + Delimiter;
+    Record += Client.Phone + Delimiter;
+    Record += to_string(Client.AccountBalance);
+
+    return Record;
+}
+bool SaveClient(stClient Client)
+{
+    fstream File;
+    File.open("Clients.txt", ios::out | ios::app);
+
+    if (File.is_open())
+    {
+        string Record = ClientToString(Client);
+        File << Record << endl;
+
+        File.close();
+
+        return true;
+    }
+
+
+    return false;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    string str = "....baraa! mansour_ bara@  Bara@ bmb bara@ 109  &  ";
+    stClient Client = ReadClientInfo();
 
-    cout << str << endl;
-    cout << str.length() << endl;
+    cout << ClientToString(Client);
 
-    string deletedPunc = DeletePunctuationsFromString(str);
-    cout << deletedPunc << endl;
-    cout << deletedPunc.length() << endl;
+    SaveClient(Client);
 }
