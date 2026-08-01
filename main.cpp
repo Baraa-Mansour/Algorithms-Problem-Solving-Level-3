@@ -402,9 +402,20 @@ void PrintStringCountInfo(stStringCountInfo StringInfo)
 }
 //
 
+// proplem-23: Check if chr is vowel
+bool IsVowel(char Char)
+{
+    Char = tolower(Char);
+
+    return (Char == 'a') || (Char == 'e') || (Char == 'i')
+        || (Char == 'o') || (Char == 'u');
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    PrintStringCountInfo(CountString("  E  Eng   Baraa   Mansour   "));
+    char c = 'E';
+    cout << IsVowel(c) << endl;
 }
