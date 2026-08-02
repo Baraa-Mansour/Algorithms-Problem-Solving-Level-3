@@ -214,7 +214,6 @@ bool IsScalarMatrix(int Matrix[100][100], short Rows, short Cols)
 }
 //
 
-
 // proplem-12: Count number in matrix
 int CountNumberInMatrix(int Matrix[100][100], short Rows, short Cols, int Number)
 {
@@ -621,7 +620,7 @@ stClient ReadClientInfo()
     stClient Client;
 
     cout << "Account number: ";
-    getline(cin, Client.AccountNumber);
+    getline(cin >> ws, Client.AccountNumber);
 
     cout << "Pin Code: ";
     getline(cin, Client.PinCode);
@@ -670,13 +669,57 @@ bool SaveClient(stClient Client)
 }
 //
 
+// proplem-34: Convert string to client and print it
+stClient RecordToClient(string Line)
+{
+    vector<string> vRecord = SplitString(Line, "#//#");
+    stClient Client;
+
+    Client.AccountNumber = vRecord.at(0);
+    Client.PinCode = vRecord.at(1);
+    Client.Name = vRecord.at(2);
+    Client.Phone = vRecord.at(3);
+    Client.AccountBalance = stod(vRecord.at(4));
+
+    return Client;
+}
+void PrintClientRecord(stClient Client)
+{
+    cout << "\n\nThe following is the extracted client record:\n";
+    cout << "\nAccout Number: " << Client.AccountNumber;
+    cout << "\nPin Code : " << Client.PinCode;
+    cout << "\nName : " << Client.Name;
+    cout << "\nPhone : " << Client.Phone;
+    cout << "\nAccount Balance: " << Client.AccountBalance;
+}
+//
+
+// proplem-35: Add clients to file
+void AddNewClient()
+{
+    stClient Client = ReadClientInfo();
+    SaveClient(Client);
+}
+void AddClients()
+{
+    char MoreClients = 'y';
+    do
+    {
+        system("cls");
+        
+        AddNewClient();
+
+        cout << "Done!, More Clients? ";
+        cin >> MoreClients;
+
+    } while (tolower(MoreClients) == 'y');
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    stClient Client = ReadClientInfo();
-
-    cout << to_string(Client);
-
-    SaveClient(Client);
+    AddClients();
+    return 0;
 }
