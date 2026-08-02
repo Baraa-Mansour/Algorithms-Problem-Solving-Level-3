@@ -795,15 +795,50 @@ bool FindClient(string AccountNumber, stClient& Client)
 }
 //
 
+// proplem-38: Delete Client By Account Number
+void SaveClientsVector(vector<stClient> vClients) // Overwrite File!!!
+{
+    fstream File;
+    File.open("Clients.txt", ios::out); //overwrite
+    
+    if (File.is_open())
+    {
+        for (const stClient& Client : vClients)
+        {
+            File << to_string(Client) << endl;
+        }
+        File.close();
+    }
+}
+bool DeleteClient(string AccountNumber)
+{
+    vector<stClient> vClients = GetAllClients();
+
+    for (int i = 0; i < vClients.size(); i++)
+    {
+        if (vClients.at(i).AccountNumber == AccountNumber)
+        {
+            vClients.erase(vClients.begin() + i);
+            break;
+        }
+    }
+
+    SaveClientsVector(vClients);
+
+    return false;
+}
+//
 int main()
 {
     srand((unsigned)time(NULL));
 
-    stClient Client;
+    PrintAllClients();
 
-    if (FindClient("A5", Client))
-        PrintClientRecord(Client);
+    if (DeleteClient("A3"))
+        cout << "Done!" << endl;
     else
-        cout << "NotFound!";
+        cout << "NotFound!" << endl;
+
+    PrintAllClients();
     return 0;
 }
