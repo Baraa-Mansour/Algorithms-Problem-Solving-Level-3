@@ -812,33 +812,65 @@ void SaveClientsVector(vector<stClient> vClients) // Overwrite File!!!
 }
 bool DeleteClient(string AccountNumber)
 {
+    bool IsFound = false;
     vector<stClient> vClients = GetAllClients();
 
     for (int i = 0; i < vClients.size(); i++)
     {
         if (vClients.at(i).AccountNumber == AccountNumber)
         {
+            IsFound = true;
             vClients.erase(vClients.begin() + i);
             break;
         }
     }
 
-    SaveClientsVector(vClients);
+    if (IsFound)
+        SaveClientsVector(vClients);
 
-    return false;
+    return IsFound;
+}
+//
+
+// proplem-39: Update Client By Account Number
+bool UpdateClient(string AccountNumber, stClient NewClient)
+{
+    bool IsFound = false;
+    vector<stClient> vClients = GetAllClients();
+
+    for (int i = 0; i < vClients.size(); i++)
+    {
+        if (vClients.at(i).AccountNumber == AccountNumber)
+        {
+            IsFound = true;
+            vClients.at(i) = NewClient;
+            break;
+        }
+    }
+
+    if (IsFound)
+        SaveClientsVector(vClients);
+
+    return IsFound;
 }
 //
 int main()
 {
     srand((unsigned)time(NULL));
+    stClient Client;
 
     PrintAllClients();
 
-    if (DeleteClient("A3"))
-        cout << "Done!" << endl;
-    else
-        cout << "NotFound!" << endl;
+    string AccountNumber;
+    cout << "Enter Account Number: ";
+    cin >> AccountNumber;
 
+    if(!FindClient(AccountNumber, Client))
+        cout << "NotFound!" << endl;
+    
+    Client = ReadClientInfo();
+
+    UpdateClient(AccountNumber, Client);
     PrintAllClients();
     return 0;
 }
