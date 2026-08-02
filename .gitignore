@@ -52,3 +52,6 @@ desktop.ini
 *.dbmdl
 *.pidb
 *.log
+
+# Ignore plain file named 0
+0
