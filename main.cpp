@@ -716,10 +716,70 @@ void AddClients()
 }
 //
 
+// proplem-36: Print all clients
+vector<stClient> GetAllClients()
+{
+    vector<stClient> vClients;
+
+    fstream File;
+    File.open("Clients.txt", ios::in);
+
+    string Record = "";
+
+    if (File.is_open())
+    {
+        while (getline(File, Record))
+        {
+            stClient Client = RecordToClient(Record);
+            vClients.push_back(Client);
+        }
+        File.close();
+    }
+
+    return vClients;
+}
+void PrintTableHeader(int NumberOfClients)
+{
+    cout << "\n\t\t\t\t\tClient List (" << NumberOfClients << ")Client(s).";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+    cout << "| " << left << setw(15) << "Accout Number";
+    cout << "| " << left << setw(10) << "Pin Code";
+    cout << "| " << left << setw(40) << "Client Name";
+    cout << "| " << left << setw(12) << "Phone";
+    cout << "| " << left << setw(12) << "Balance";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+}
+void PrintClientsTableRecord(stClient Client)
+{
+    cout << "| " << setw(15) << left << Client.AccountNumber;
+    cout << "| " << setw(10) << left << Client.PinCode;
+    cout << "| " << setw(40) << left << Client.Name;
+    cout << "| " << setw(12) << left << Client.Phone;
+    cout << "| " << setw(12) << left << Client.AccountBalance;
+}
+void PrintAllClients()
+{
+    vector<stClient> vClients = GetAllClients();
+
+    PrintTableHeader(vClients.size());
+
+    for (const stClient& Clients : vClients)
+    {
+        PrintClientsTableRecord(Clients);
+        cout << endl;
+    }
+
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    AddClients();
+    PrintAllClients();
     return 0;
 }
