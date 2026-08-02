@@ -637,7 +637,7 @@ stClient ReadClientInfo()
 
     return Client;
 }
-string ClientToString(stClient Client)
+string to_string(stClient Client)
 {
     string Record = "";
     string Delimiter = "#//#";
@@ -657,7 +657,7 @@ bool SaveClient(stClient Client)
 
     if (File.is_open())
     {
-        string Record = ClientToString(Client);
+        string Record = to_string(Client);
         File << Record << endl;
 
         File.close();
@@ -676,7 +676,7 @@ int main()
 
     stClient Client = ReadClientInfo();
 
-    cout << ClientToString(Client);
+    cout << to_string(Client);
 
     SaveClient(Client);
 }
