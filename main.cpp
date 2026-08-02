@@ -685,12 +685,13 @@ stClient RecordToClient(string Line)
 }
 void PrintClientRecord(stClient Client)
 {
-    cout << "\n\nThe following is the extracted client record:\n";
+    cout << "\nThe following is the extracted client record:\n";
     cout << "\nAccout Number: " << Client.AccountNumber;
     cout << "\nPin Code : " << Client.PinCode;
     cout << "\nName : " << Client.Name;
     cout << "\nPhone : " << Client.Phone;
     cout << "\nAccount Balance: " << Client.AccountBalance;
+    cout << endl;
 }
 //
 
@@ -776,10 +777,33 @@ void PrintAllClients()
 }
 //
 
+// proplem-37: Find Client By Account Number
+bool FindClient(string AccountNumber, stClient& Client)
+{
+    vector<stClient> vClients = GetAllClients();
+
+    for (const stClient& VectorClient : vClients)
+    {
+        if (VectorClient.AccountNumber == AccountNumber)
+        {
+            Client = VectorClient;
+            return true;
+        }
+    }
+
+    return false;
+}
+//
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    PrintAllClients();
+    stClient Client;
+
+    if (FindClient("A5", Client))
+        PrintClientRecord(Client);
+    else
+        cout << "NotFound!";
     return 0;
 }
